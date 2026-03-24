@@ -4,7 +4,7 @@ const USER   = localStorage.getItem('hp_user');
 const PASS   = localStorage.getItem('hp_pass');
 if (!SERVER) { location.href = 'index.html'; }
 
-const _PROXY_DEFAULT = 'https://calm-truth-2a06.dedex1711.workers.dev';
+const _PROXY_DEFAULT = 'https://autumn-glade-7dce.dedex1711.workers.dev';
 
 const _PROXY = localStorage.getItem('hp_proxy') || _PROXY_DEFAULT;
 
