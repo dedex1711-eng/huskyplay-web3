@@ -1,54 +1,73 @@
 <?php
+// 🔥 CORS LIBERADO
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Headers: *");
 
-// Responde preflight (CORS)
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
 
+// 🔒 valida URL
 if (!isset($_GET['url'])) {
     http_response_code(400);
-    echo json_encode(["error" => "URL não fornecida"]);
-    exit;
+    exit("URL não fornecida");
 }
 
 $url = $_GET['url'];
 
-// 🔒 (Opcional) Proteção básica - permite só domínios específicos
-$allowed = [
-    "fonteblack.sbs",
+// 🔥 TIMEOUT
+$timeout = 15;
+
+// 🔥 USER AGENTS (rotação)
+$userAgents = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    "Mozilla/5.0 (Linux; Android 10)",
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)"
 ];
 
-$host = parse_url($url, PHP_URL_HOST);
+$ua = $userAgents[array_rand($userAgents)];
 
-if (!in_array($host, $allowed)) {
-    http_response_code(403);
-    echo json_encode(["error" => "Domínio não permitido"]);
-    exit;
-}
+// 🔥 HEADERS SIMULANDO PLAYER REAL
+$headers = [
+    "Accept: */*",
+    "Connection: keep-alive",
+];
 
-// 🔁 Requisição
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+// 🔁 CURL
+$ch = curl_init();
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_TIMEOUT => $timeout,
 
-// Simula navegador (evita bloqueio IPTV)
-curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+    // 🔥 IGNORA SSL (ESSENCIAL IPTV)
+    CURLOPT_SSL_VERIFYPEER => false,
+    CURLOPT_SSL_VERIFYHOST => false,
+
+    CURLOPT_USERAGENT => $ua,
+    CURLOPT_HTTPHEADER => $headers,
+]);
 
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 
+// 🔁 ERRO → tenta novamente (fallback simples)
+if ($response === false || $httpCode >= 400) {
+    curl_setopt($ch, CURLOPT_USERAGENT, $userAgents[array_rand($userAgents)]);
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+}
+
 curl_close($ch);
 
-// Define content-type correto
+// 🔥 retorna tipo correto
 if ($contentType) {
-    header("Content-Type: " . $contentType);
+    header("Content-Type: $contentType");
 }
 
 http_response_code($httpCode);
