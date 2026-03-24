@@ -42,88 +42,117 @@
     </form>
   </div>
   <script>
-    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
-    if (localStorage.getItem('hp_server')) location.href = 'app.html';
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 
-    const _savedUser = localStorage.getItem('hp_user');
-    const _savedPass = localStorage.getItem('hp_pass');
-    if (_savedUser) document.getElementById('username').value = _savedUser;
-    if (_savedPass) document.getElementById('password').value = _savedPass;
+// Auto login
+if (localStorage.getItem('hp_server')) location.href = 'app.html';
 
-    // Toggle servidor manual
-    document.getElementById('toggleServer').addEventListener('click', () => {
-      const field = document.getElementById('serverField');
-      const btn = document.getElementById('toggleServer');
-      const visible = field.style.display !== 'none';
-      field.style.display = visible ? 'none' : '';
-      btn.textContent = visible ? '+ Informar servidor manualmente' : '− Ocultar servidor';
-    });
+// Preencher login salvo
+const _savedUser = localStorage.getItem('hp_user');
+const _savedPass = localStorage.getItem('hp_pass');
+if (_savedUser) document.getElementById('username').value = _savedUser;
+if (_savedPass) document.getElementById('password').value = _savedPass;
 
-    // Cloudflare Worker proxy URL — substitua pela sua URL após o deploy
-    // Instruções: https://workers.cloudflare.com → Create Worker → cole cloudflare-worker.js → Deploy
-    const PROXY_URL = 'https://dedex1711-eng.github.io/proxy';
-    
-    const SERVERS = [
-      'http://fonteblack.sbs',
-      'http://zeroum.blog:80',
-      'http://pbkdiamond.site:80',
-      'http://blackcyber.site',
-      'http://gowpm.sbs',
-      'http://cdn.vr766.com:80',
-      'http://pbklite.site:80',
-      'http://zilgringo.site:80',
-      'http://blackouro.fun',
-      'http://blackrubi.shop'
-    ];
+// Toggle servidor manual
+document.getElementById('toggleServer').addEventListener('click', () => {
+  const field = document.getElementById('serverField');
+  const btn = document.getElementById('toggleServer');
+  const visible = field.style.display !== 'none';
+  field.style.display = visible ? 'none' : '';
+  btn.textContent = visible ? '+ Informar servidor manualmente' : '− Ocultar servidor';
+});
 
-    // Se estiver em HTTPS, usa o proxy automaticamente
-    const needsProxy = location.protocol === 'https:';
+// 🔥 SEU PROXY (OBRIGATÓRIO)
+const PROXY_URL = 'https://huskyplay.online/proxy.php';
 
-    function proxyFetch(url, opts = {}) {
-      const fetchUrl = needsProxy ? `${PROXY_URL}?url=${encodeURIComponent(url)}` : url;
-      return fetch(fetchUrl, opts);
-    }
+// Lista de servidores
+const SERVERS = [
+  'http://fonteblack.sbs',
+  'http://zeroum.blog:80',
+  'http://pbkdiamond.site:80',
+  'http://blackcyber.site',
+  'http://gowpm.sbs',
+  'http://cdn.vr766.com:80',
+  'http://pbklite.site:80',
+  'http://zilgringo.site:80',
+  'http://blackouro.fun',
+  'http://blackrubi.shop'
+];
 
-    document.getElementById('loginForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const user = document.getElementById('username').value.trim();
-      const pass = document.getElementById('password').value;
-      const btn  = document.getElementById('loginBtn');
-      const err  = document.getElementById('loginError');
+// 🔥 FORÇA uso do proxy sempre (mais seguro)
+function proxyFetch(url, timeout = 10000) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
 
-      btn.disabled = true;
-      err.classList.add('hidden');
+  const finalUrl = `${PROXY_URL}?url=${encodeURIComponent(url)}`;
 
-      // Se informou servidor manual, tenta só ele
-      const manualServer = document.getElementById('serverManual').value.trim().replace(/\/$/, '');
-      const serversToTry = manualServer ? [manualServer] : SERVERS;
+  return fetch(finalUrl, {
+    signal: controller.signal
+  }).finally(() => clearTimeout(id));
+}
 
-      for (let i = 0; i < serversToTry.length; i++) {
-        const server = serversToTry[i];
-        btn.textContent = `Conectando... (${i + 1}/${serversToTry.length})`;
-        try {
-          const apiUrl = `${server}/player_api.php?username=${encodeURIComponent(user)}&password=${encodeURIComponent(pass)}`;
-          const res = await proxyFetch(apiUrl, { signal: AbortSignal.timeout(8000) });
-          if (!res.ok) continue;
-          const data = await res.json();
-          if (data.user_info && data.user_info.auth == 1) {
-            // Salva o server com proxy embutido se necessário
-            localStorage.setItem('hp_server', server);
-            localStorage.setItem('hp_user', user);
-            localStorage.setItem('hp_pass', pass);
-            localStorage.setItem('hp_proxy', needsProxy ? PROXY_URL : '');
-            if (data.user_info.exp_date) localStorage.setItem('hp_expiry', data.user_info.exp_date);
-            location.href = 'app.html';
-            return;
-          }
-        } catch {}
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  const user = document.getElementById('username').value.trim();
+  const pass = document.getElementById('password').value;
+  const btn  = document.getElementById('loginBtn');
+  const err  = document.getElementById('loginError');
+
+  btn.disabled = true;
+  err.classList.add('hidden');
+
+  // servidor manual
+  const manualServer = document.getElementById('serverManual').value.trim().replace(/\/$/, '');
+  const serversToTry = manualServer ? [manualServer] : SERVERS;
+
+  for (let i = 0; i < serversToTry.length; i++) {
+    let server = serversToTry[i].replace(/\/$/, '');
+
+    btn.textContent = `Conectando... (${i + 1}/${serversToTry.length})`;
+
+    try {
+      const apiUrl = `${server}/player_api.php?username=${encodeURIComponent(user)}&password=${encodeURIComponent(pass)}`;
+
+      const res = await proxyFetch(apiUrl, 8000);
+
+      if (!res || !res.ok) continue;
+
+      const text = await res.text();
+
+      // evita crash se não for JSON
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        continue;
       }
 
-      err.textContent = 'Usuário ou senha inválidos. Verifique suas credenciais.';
-      err.classList.remove('hidden');
-      btn.textContent = 'Entrar';
-      btn.disabled = false;
-    });
-  </script>
+      if (data?.user_info?.auth == 1) {
+        localStorage.setItem('hp_server', server);
+        localStorage.setItem('hp_user', user);
+        localStorage.setItem('hp_pass', pass);
+        localStorage.setItem('hp_proxy', PROXY_URL);
+
+        if (data.user_info.exp_date) {
+          localStorage.setItem('hp_expiry', data.user_info.exp_date);
+        }
+
+        location.href = 'app.html';
+        return;
+      }
+
+    } catch (e) {
+      // timeout ou erro de rede → tenta próximo
+      continue;
+    }
+  }
+
+  err.textContent = 'Usuário ou senha inválidos ou servidor offline.';
+  err.classList.remove('hidden');
+  btn.textContent = 'Entrar';
+  btn.disabled = false;
+});
+</script>
 </body>
 </html>
