@@ -4,7 +4,7 @@ const USER   = localStorage.getItem('hp_user');
 const PASS   = localStorage.getItem('hp_pass');
 if (!SERVER) { location.href = 'index.html'; }
 
-const _PROXY_DEFAULT = 'https://huskyplay-web3.vercel.app/proxy';
+const _PROXY_DEFAULT = 'https://dedex1711-eng.github.io/huskyplay-web3/proxy';
 
 const _PROXY = localStorage.getItem('hp_proxy') || _PROXY_DEFAULT;
 
