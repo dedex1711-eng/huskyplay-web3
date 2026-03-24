@@ -4,11 +4,17 @@ const USER   = localStorage.getItem('hp_user');
 const PASS   = localStorage.getItem('hp_pass');
 if (!SERVER) { location.href = 'index.html'; }
 
-// ── CORS Proxy ────────────────────────────────────────────────────────────────
-const _PROXY_DEFAULT = 'https://dedex1711-eng.github.io/proxy.php';
+const _PROXY_DEFAULT = 'https://huskyplay.online/proxy.php';
+
 const _PROXY = localStorage.getItem('hp_proxy') || _PROXY_DEFAULT;
+
 function proxyUrl(url) {
-  return _PROXY ? `${_PROXY}?url=${encodeURIComponent(url)}` : url;
+  if (!url) return '';
+
+  // evita duplicar proxy
+  if (url.includes('/proxy.php')) return url;
+
+  return `${_PROXY}?url=${encodeURIComponent(url)}`;
 }
 
 const api = (action, extra = '') =>
