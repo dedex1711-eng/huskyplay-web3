@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Husky Play</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="logo">
+        <img src="logo.png" alt="Husky Play" class="logo-img" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#planos">Planos</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <button class="btn-nav" onclick="scrollToDownload()">Baixar Agora</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Plataforma de Streaming
+      </div>
+      <h1>Bem-vindo ao <span class="accent-blue">Husky</span> <span class="accent">Play</span></h1>
+      <p class="hero-sub">Assista filmes, series, canais ao vivo e muito mais. Streaming de alta qualidade no PC, Android, Smart TV, Roku, TV Box e Fire TV.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="scrollToDownload()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Gratis
+        </button>
+        <button class="btn-secondary" onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})">Saiba Mais</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">500K+</span><span class="stat-label">Usuarios</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">4.8★</span><span class="stat-label">Avaliacao</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">HD/4K</span><span class="stat-label">Qualidade</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="screen-header">
+            <span class="screen-dot red"></span>
+            <span class="screen-dot yellow"></span>
+            <span class="screen-dot green"></span>
+          </div>
+          <div class="screen-content">
+            <div class="app-icon-big"><img src="logo.png" alt="Husky Play" style="width:100px;border-radius:12px;" /></div>
+            <p class="screen-title">Husky Play</p>
+            <div class="screen-bar"></div>
+            <div class="screen-bar short"></div>
+            <div class="screen-cards">
+              <div class="screen-card c1"></div>
+              <div class="screen-card c2"></div>
+              <div class="screen-card c3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="section-label">Sobre o App</div>
+      <h2>O que e o <span class="accent-blue">Husky</span> <span class="accent">Play</span>?</h2>
+      <p class="section-sub">O Husky Play e uma plataforma de streaming completa. Assista filmes, series, canais ao vivo e conteudos sob demanda com qualidade HD e 4K, disponivel para PC, Android, Smart TV, Roku, TV Box e Fire TV.</p>
+      <div class="sobre-cards">
+        <div class="sobre-card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="15" height="11" rx="1"/><path d="M17 7l4 2.5-4 2.5V7z"/><line x1="2" y1="17" x2="22" y2="17"/></svg>
+          </div>
+          <h3>Streaming HD/4K</h3>
+          <p>Assista seus conteudos favoritos com qualidade de imagem excepcional, ate 4K quando disponivel.</p>
+        </div>
+        <div class="sobre-card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          </div>
+          <h3>Canais ao Vivo</h3>
+          <p>Acesse centenas de canais ao vivo em tempo real, incluindo esportes, noticias e entretenimento.</p>
+        </div>
+        <div class="sobre-card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><rect x="2" y="7" width="3" height="10" rx="1"/><rect x="19" y="7" width="3" height="10" rx="1"/></svg>
+          </div>
+          <h3>Multiplataforma</h3>
+          <p>PC, Android, Smart TV, Roku, TV Box e Fire TV. Uma conta para todos os dispositivos.</p>
+        </div>
+        <div class="sobre-card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Facil de Usar</h3>
+          <p>Interface limpa e intuitiva. Instale, abra e comece a assistir em menos de 2 minutos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECURSOS -->
+  <section class="recursos" id="recursos">
+    <div class="container">
+      <div class="section-label">Funcionalidades</div>
+      <h2>Tudo que voce <span class="accent">precisa</span></h2>
+      <div class="recursos-grid">
+
+        <div class="recurso-item">
+          <span class="recurso-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="15" height="11" rx="1"/><path d="M17 7l4 2.5-4 2.5V7z"/><line x1="2" y1="17" x2="22" y2="17"/></svg>
+          </span>
+          <div>
+            <h4>Filmes e Series</h4>
+            <p>Catalogo enorme de filmes e series sob demanda para assistir quando quiser.</p>
+          </div>
+        </div>
+
+        <div class="recurso-item">
+          <span class="recurso-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          </span>
+          <div>
+            <h4>Canais ao Vivo</h4>
+            <p>Centenas de canais ao vivo: esportes, noticias, filmes, infantil e muito mais.</p>
+          </div>
+        </div>
+
+        <div class="recurso-item">
+          <span class="recurso-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div>
+            <h4>Esportes em Tempo Real</h4>
+            <p>Acompanhe jogos e eventos esportivos ao vivo com transmissao de alta qualidade.</p>
+          </div>
+        </div>
+
+        <div class="recurso-item">
+          <span class="recurso-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M9 10l2 2 4-4"/></svg>
+          </span>
+          <div>
+            <h4>Qualidade HD e 4K</h4>
+            <p>Streaming adaptativo que ajusta a qualidade automaticamente a sua conexao.</p>
+          </div>
+        </div>
+
+        <div class="recurso-item">
+          <span class="recurso-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><rect x="2" y="7" width="3" height="10" rx="1"/><rect x="19" y="7" width="3" height="10" rx="1"/></svg>
+          </span>
+          <div>
+            <h4>Todos os Dispositivos</h4>
+            <p>PC, Android, Smart TV, Roku, TV Box e Fire TV. Uma conta para tudo.</p>
+          </div>
+        </div>
+
+        <div class="recurso-item">
+          <span class="recurso-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <div>
+            <h4>Suporte 24/7</h4>
+            <p>Nossa equipe esta sempre disponivel para resolver qualquer problema.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section class="planos" id="planos">
+    <div class="container">
+      <div class="section-label">Planos</div>
+      <h2>Escolha seu <span class="accent">Plano</span></h2>
+      <p class="section-sub">Acesso completo ao Husky Play. Sem taxas ocultas.</p>
+      <div class="planos-grid">
+
+        <div class="plano-card teste">
+          <div class="plano-badge teste-badge">Gratis</div>
+          <div class="plano-nome">Teste</div>
+          <div class="plano-preco">
+            <span class="preco-valor" style="font-size:42px;">6h</span>
+          </div>
+          <div class="plano-economia">Experimente sem pagar nada</div>
+          <ul class="plano-lista">
+            <li>&#10003; Filmes e series sob demanda</li>
+            <li>&#10003; Canais ao vivo</li>
+            <li>&#10003; PC, Android e TVs</li>
+            <li>&#10003; Valido por 6 horas</li>
+          </ul>
+          <a href="#" class="btn-plano teste" onclick="abrirPlano('Teste Gratis 6 horas'); return false;">Testar Gratis</a>
+        </div>
+
+        <div class="plano-card">
+          <div class="plano-nome">Mensal</div>
+          <div class="plano-preco">
+            <span class="preco-cifrao">R$</span>
+            <span class="preco-valor">25</span>
+            <span class="preco-periodo">/mes</span>
+          </div>
+          <div class="plano-economia"></div>
+          <ul class="plano-lista">
+            <li>&#10003; Filmes e series ilimitados</li>
+            <li>&#10003; Canais ao vivo</li>
+            <li>&#10003; PC, Android e TVs</li>
+            <li>&#10003; Qualidade HD/4K</li>
+          </ul>
+          <a href="#" class="btn-plano" onclick="abrirPlano('Mensal R$ 25'); return false;">Comecar Agora</a>
+        </div>
+
+        <div class="plano-card">
+          <div class="plano-nome">3 Meses</div>
+          <div class="plano-preco">
+            <span class="preco-cifrao">R$</span>
+            <span class="preco-valor">60</span>
+            <span class="preco-periodo">/trimestre</span>
+          </div>
+          <div class="plano-economia">Equivale a R$ 20/mes</div>
+          <ul class="plano-lista">
+            <li>&#10003; Filmes e series ilimitados</li>
+            <li>&#10003; Canais ao vivo</li>
+            <li>&#10003; PC, Android e TVs</li>
+            <li>&#10003; Qualidade HD/4K</li>
+          </ul>
+          <a href="#" class="btn-plano" onclick="abrirPlano('3 Meses R$ 60'); return false;">Comecar Agora</a>
+        </div>
+
+        <div class="plano-card destaque">
+          <div class="plano-badge">Mais Popular</div>
+          <div class="plano-nome">6 Meses</div>
+          <div class="plano-preco">
+            <span class="preco-cifrao">R$</span>
+            <span class="preco-valor">120</span>
+            <span class="preco-periodo">/semestre</span>
+          </div>
+          <div class="plano-economia">Equivale a R$ 20/mes</div>
+          <ul class="plano-lista">
+            <li>&#10003; Filmes e series ilimitados</li>
+            <li>&#10003; Canais ao vivo</li>
+            <li>&#10003; PC, Android e TVs</li>
+            <li>&#10003; Qualidade HD/4K</li>
+          </ul>
+          <a href="#" class="btn-plano destaque" onclick="abrirPlano('6 Meses R$ 120'); return false;">Comecar Agora</a>
+        </div>
+
+        <div class="plano-card melhor">
+          <div class="plano-badge melhor-badge">Melhor Valor</div>
+          <div class="plano-nome">Anual</div>
+          <div class="plano-preco">
+            <span class="preco-cifrao">R$</span>
+            <span class="preco-valor">200</span>
+            <span class="preco-periodo">/ano</span>
+          </div>
+          <div class="plano-economia economia-destaque">Equivale a R$ 16,67/mes &mdash; Economize 33%</div>
+          <ul class="plano-lista">
+            <li>&#10003; Filmes e series ilimitados</li>
+            <li>&#10003; Canais ao vivo</li>
+            <li>&#10003; PC, Android e TVs</li>
+            <li>&#10003; Qualidade HD/4K</li>
+          </ul>
+          <a href="#" class="btn-plano melhor" onclick="abrirPlano('Anual R$ 200'); return false;">Comecar Agora</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="download" id="download">
+    <div class="container">
+      <div class="section-label">Download</div>
+      <h2>Baixe o <span class="accent-blue">Husky</span> <span class="accent">Play</span></h2>
+      <p class="section-sub">Disponivel em 6 plataformas. Escolha a sua e comece a assistir agora.</p>
+      <div class="download-cards">
+
+        <div class="download-card">
+          <div class="platform-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Windows PC</h3>
+          <p>Compativel com Windows 10 e 11</p>
+          <ul class="req-list">
+            <li>&#10003; Windows 10 / 11 (64-bit)</li>
+            <li>&#10003; 4GB RAM minimo</li>
+            <li>&#10003; 2GB de espaco livre</li>
+            <li>&#10003; Conexao com internet</li>
+          </ul>
+          <div class="version-tag">v1.2 &bull; 198 MB</div>
+          <a href="https://github.com/dedex1711-eng/huskyprimetv/releases/download/1.2/HuskyPlay-Setup-1.0.0.exe" class="btn-download" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Baixar para PC
+          </a>
+        </div>
+
+        <div class="download-card featured">
+          <div class="featured-badge">Mais Popular</div>
+          <div class="platform-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>Android</h3>
+          <p>Compativel com Android 7.0+</p>
+          <ul class="req-list">
+            <li>&#10003; Android 7.0 ou superior</li>
+            <li>&#10003; 2GB RAM minimo</li>
+            <li>&#10003; 500MB de espaco livre</li>
+            <li>&#10003; Conexao com internet</li>
+          </ul>
+          <div class="version-tag">v1.2.7 &bull; 12.9 MB</div>
+          <a href="https://github.com/dedex1711-eng/huskyplay-web2/releases/download/1.0/HuskyPlay.1.2.7.apk" class="btn-download android" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Baixar APK
+          </a>
+        </div>
+
+        <div class="download-card">
+          <div class="platform-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="22" x2="16" y2="22"/><line x1="12" y1="18" x2="12" y2="22"/><circle cx="12" cy="11" r="3"/></svg>
+          </div>
+          <h3>Smart TV</h3>
+          <p>Samsung, LG, Sony e outras</p>
+          <ul class="req-list">
+            <li>&#10003; Android TV / Tizen / webOS</li>
+            <li>&#10003; Controle remoto suportado</li>
+            <li>&#10003; Resolucao ate 4K</li>
+          </ul>
+          <div class="contato-info">Entre em contato para receber o link de instalacao</div>
+          <a href="#" class="btn-download btn-contato" onclick="showContatoModal('Smart TV'); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Entrar em Contato
+          </a>
+        </div>
+
+        <div class="download-card">
+          <div class="platform-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg>
+          </div>
+          <h3>Roku</h3>
+          <p>Todos os modelos Roku</p>
+          <ul class="req-list">
+            <li>&#10003; Roku OS 9.0 ou superior</li>
+            <li>&#10003; Controle remoto suportado</li>
+            <li>&#10003; Streaming HD/4K</li>
+          </ul>
+          <div class="contato-info">Entre em contato para receber o link de instalacao</div>
+          <a href="#" class="btn-download btn-contato" onclick="showContatoModal('Roku'); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Entrar em Contato
+          </a>
+        </div>
+
+        <div class="download-card">
+          <div class="platform-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="10" rx="2"/><circle cx="17" cy="12" r="1.5" fill="currentColor"/><line x1="5" y1="12" x2="10" y2="12"/></svg>
+          </div>
+          <h3>TV Box</h3>
+          <p>Android Box e similares</p>
+          <ul class="req-list">
+            <li>&#10003; Android 7.0 ou superior</li>
+            <li>&#10003; Controle remoto suportado</li>
+            <li>&#10003; Streaming HD/4K</li>
+          </ul>
+          <div class="contato-info">Entre em contato para receber o link de instalacao</div>
+          <a href="#" class="btn-download btn-contato" onclick="showContatoModal('TV Box'); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Entrar em Contato
+          </a>
+        </div>
+
+        <div class="download-card">
+          <div class="platform-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.5 5.5 7 9 9 13c1 2 3 3 3 3s2-1 3-3c2-4 .5-7.5-3-11z"/><path d="M12 16v6"/></svg>
+          </div>
+          <h3>Fire TV</h3>
+          <p>Amazon Fire TV Stick e Fire TV</p>
+          <ul class="req-list">
+            <li>&#10003; Fire OS 6 ou superior</li>
+            <li>&#10003; Controle remoto suportado</li>
+            <li>&#10003; Streaming HD/4K</li>
+          </ul>
+          <div class="contato-info">Entre em contato para receber o link de instalacao</div>
+          <a href="#" class="btn-download btn-contato" onclick="showContatoModal('Fire TV'); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Entrar em Contato
+          </a>
+        </div>
+
+      </div>
+
+      <div class="install-steps">
+        <h3>Como instalar</h3>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><p>Clique no botao de download da sua plataforma</p></div>
+          <div class="step-arrow">&rarr;</div>
+          <div class="step"><div class="step-num">2</div><p>Aguarde o download completar</p></div>
+          <div class="step-arrow">&rarr;</div>
+          <div class="step"><div class="step-num">3</div><p>Execute o instalador e siga as instrucoes</p></div>
+          <div class="step-arrow">&rarr;</div>
+          <div class="step"><div class="step-num">4</div><p>Abra o Husky Play e aproveite!</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-label">Duvidas</div>
+      <h2>Perguntas <span class="accent">Frequentes</span></h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Funciona em Smart TV, Roku, TV Box e Fire TV?
+            <span class="faq-arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <p>Sim! O Husky Play e compativel com Smart TV (Samsung, LG, Sony), Roku, TV Box (Android Box) e Fire TV Stick. Consulte a secao de download para instrucoes de instalacao de cada dispositivo.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            O Husky Play e gratuito?
+            <span class="faq-arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <p>O Husky Play oferece um teste gratuito de 6 horas com acesso completo ao streaming, sem precisar de cartao de credito. Apos o periodo de teste, voce pode escolher um dos planos a partir de R$ 25/mes.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Que tipo de conteudo esta disponivel?
+            <span class="faq-arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <p>O Husky Play oferece filmes, series, canais ao vivo (esportes, noticias, entretenimento), conteudo infantil e muito mais. O catalogo e atualizado constantemente.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            O APK para Android e seguro?
+            <span class="faq-arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <p>Sim. Nosso APK e verificado e seguro. Para instalar, voce precisara habilitar "Fontes desconhecidas" nas configuracoes do seu Android. Isso e normal para apps fora da Play Store.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Qual a qualidade do streaming?
+            <span class="faq-arrow">&#9660;</span>
+          </button>
+          <div class="faq-answer">
+            <p>O Husky Play suporta streaming em HD e 4K. A qualidade e ajustada automaticamente de acordo com a velocidade da sua internet para garantir a melhor experiencia sem travamentos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="logo.png" alt="Husky Play" class="logo-img" />
+          </div>
+          <p>Sua plataforma de streaming favorita. Filmes, series e canais ao vivo em todos os dispositivos.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Produto</h4>
+            <a href="#sobre">Sobre</a>
+            <a href="#recursos">Recursos</a>
+            <a href="#planos">Planos</a>
+            <a href="#download">Download</a>
+          </div>
+          <div class="footer-col">
+            <h4>Suporte</h4>
+            <a href="#faq">FAQ</a>
+            <a href="#">Contato</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="#">Termos de Uso</a>
+            <a href="#">Privacidade</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Husky Play. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-icon"><img src="logo.png" alt="Husky Play" style="width:80px;" /></div>
+      <h3 id="modal-title">Download iniciado!</h3>
+      <p id="modal-text">Seu download comecara em instantes.</p>
+      <button class="btn-primary" onclick="closeModal()">OK, entendi!</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
