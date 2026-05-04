@@ -1,3 +1,27 @@
+// MUSIC PLAYER
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+const iconPlay = document.getElementById('iconPlay');
+const iconPause = document.getElementById('iconPause');
+
+bgMusic.volume = 0.5;
+
+function toggleMusic() {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    iconPlay.style.display = 'none';
+    iconPause.style.display = 'block';
+  } else {
+    bgMusic.pause();
+    iconPlay.style.display = 'block';
+    iconPause.style.display = 'none';
+  }
+}
+
+function setVolume(val) {
+  bgMusic.volume = val;
+}
+
 const WA_NUMBER = '5583998929124';
 
 function scrollToDownload() {
